@@ -1,0 +1,781 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mayank Pathak — Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #f7f6f2;
+        --surface: #ffffff;
+        --text: #1a1a1a;
+        --muted: #6b6b6b;
+        --subtle: #b0afa8;
+        --border: #e0deda;
+        --accent: #2a5cff;
+        --accent-light: #e8edff;
+        --tag-bg: #efefeb;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* NAV */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(247, 246, 242, 0.92);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 56px;
+      }
+      .nav-name {
+        font-family: "DM Serif Display", serif;
+        font-size: 18px;
+        color: var(--text);
+      }
+      .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+      .nav-links a {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .nav-links a:hover {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      /* LAYOUT */
+      main {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 0 1.5rem 4rem;
+      }
+
+      /* HERO */
+      .hero {
+        padding: 4rem 0 2.5rem;
+      }
+      .hero-badge {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 500;
+        padding: 4px 12px;
+        border-radius: 99px;
+        background: var(--accent-light);
+        color: var(--accent);
+        margin-bottom: 1rem;
+        letter-spacing: 0.04em;
+      }
+      .hero h1 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(32px, 6vw, 48px);
+        line-height: 1.15;
+        color: var(--text);
+        margin-bottom: 1rem;
+      }
+      .hero p {
+        font-size: 15px;
+        color: var(--muted);
+        max-width: 520px;
+        margin-bottom: 1.5rem;
+      }
+      .hero-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        cursor: pointer;
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+      }
+      .btn:hover {
+        background: var(--tag-bg);
+        border-color: #ccc;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        border-color: var(--accent);
+      }
+      .btn-primary:hover {
+        background: #1a47e0;
+        border-color: #1a47e0;
+      }
+
+      /* SECTION */
+      section {
+        padding: 2.5rem 0;
+        border-top: 1px solid var(--border);
+      }
+      .section-label {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--subtle);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1.25rem;
+      }
+
+      /* SKILLS */
+      .skills-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .skill {
+        font-size: 13px;
+        padding: 5px 14px;
+        border-radius: 99px;
+        background: var(--tag-bg);
+        color: var(--muted);
+        border: 1px solid var(--border);
+      }
+
+      /* PROJECTS */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 14px;
+      }
+      .project-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.25rem;
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s;
+      }
+      .project-card:hover {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+        transform: translateY(-2px);
+      }
+      .project-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 6px;
+      }
+      .project-name {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .project-ext {
+        display: flex;
+        gap: 10px;
+      }
+      .project-ext a {
+        font-size: 12px;
+        color: var(--accent);
+      }
+      .project-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.65;
+        margin-bottom: 10px;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .tag {
+        font-size: 11px;
+        padding: 3px 9px;
+        border-radius: 5px;
+        background: var(--tag-bg);
+        color: var(--muted);
+      }
+
+      /* EXPERIENCE */
+      .exp-item {
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .exp-item:last-child {
+        border-bottom: none;
+      }
+      .exp-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 2px;
+      }
+      .exp-role {
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .exp-date {
+        font-size: 12px;
+        color: var(--subtle);
+      }
+      .exp-org {
+        font-size: 13px;
+        color: var(--accent);
+        margin-bottom: 5px;
+      }
+      .exp-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* EDUCATION */
+      .edu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 12px;
+      }
+      .edu-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1rem 1.15rem;
+      }
+      .edu-degree {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 3px;
+      }
+      .edu-inst {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+      .edu-meta {
+        font-size: 12px;
+        color: var(--subtle);
+      }
+
+      /* STATS */
+      .stats-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .stat-card {
+        flex: 1;
+        min-width: 140px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
+      }
+      .stat-label {
+        font-size: 11px;
+        color: var(--subtle);
+        margin-bottom: 4px;
+      }
+      .stat-val {
+        font-family: "DM Serif Display", serif;
+        font-size: 26px;
+        color: var(--text);
+      }
+
+      /* PUBLICATIONS */
+      .pub-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .pub {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem 1.1rem;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+      .pub strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+      .pub a {
+        font-size: 12px;
+      }
+
+      /* CERTIFICATIONS */
+      .cert-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .cert-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--muted);
+        padding: 0.75rem 1rem;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+      }
+      .cert-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        flex-shrink: 0;
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2rem 1.5rem;
+        max-width: 820px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      footer span {
+        font-size: 12px;
+        color: var(--subtle);
+      }
+      footer a {
+        font-size: 12px;
+        color: var(--accent);
+      }
+
+      /* FADE IN ANIMATION */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 600px) {
+        nav {
+          padding: 0 1rem;
+        }
+        .nav-links {
+          gap: 12px;
+        }
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats-row .stat-card {
+          min-width: 120px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <span class="nav-name">Mayank Pathak</span>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <main>
+      <!-- HERO -->
+      <div class="hero fade-in">
+        <div class="hero-badge">Open to opportunities</div>
+        <h1>AI/ML Engineer &amp;<br />Full Stack Developer</h1>
+        <p>
+          M.Tech in AI from Delhi Technological University. I build agentic AI
+          systems, full-stack apps, and production-grade backends. GATE 2023 —
+          AIR 5767.
+        </p>
+        <div class="hero-links">
+          <a class="btn btn-primary" href="mailto:mayank74pathak@gmail.com"
+            >Get in touch</a
+          >
+          <a
+            class="btn"
+            href="https://github.com/mayank74pathak"
+            target="_blank"
+            >GitHub</a
+          >
+          <a
+            class="btn"
+            href="https://linkedin.com/in/mayank74pathak"
+            target="_blank"
+            >LinkedIn</a
+          >
+          <a class="btn" href="tel:+918779974069">+91 87799 74069</a>
+        </div>
+      </div>
+
+      <!-- SKILLS -->
+      <section class="fade-in">
+        <div class="section-label">Technical Skills</div>
+        <div class="skills-wrap">
+          <span class="skill">C++</span>
+          <span class="skill">Python</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">React</span>
+          <span class="skill">Tailwind CSS</span>
+          <span class="skill">ShadCN</span>
+          <span class="skill">Node.js</span>
+          <span class="skill">Express</span>
+          <span class="skill">FastAPI</span>
+          <span class="skill">Streamlit</span>
+          <span class="skill">PostgreSQL</span>
+          <span class="skill">MongoDB Atlas</span>
+          <span class="skill">LangChain</span>
+          <span class="skill">LangGraph</span>
+          <span class="skill">TensorFlow</span>
+          <span class="skill">Keras</span>
+          <span class="skill">Claude AI</span>
+          <span class="skill">AWS EC2</span>
+          <span class="skill">Supabase</span>
+          <span class="skill">Netlify</span>
+          <span class="skill">Render.com</span>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="fade-in">
+        <div class="section-label">Projects</div>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-top">
+              <span class="project-name">AI Code Reviewer Bot</span>
+              <div class="project-ext">
+                <a
+                  href="https://github.com/mayank74pathak/ai-pr-fresh"
+                  target="_blank"
+                  >GitHub ↗</a
+                >
+              </div>
+            </div>
+            <p class="project-desc">
+              Automated GitHub PR reviewer triggered by webhooks. Extracts JS
+              patches and posts structured AI-generated reviews as PR comments.
+              Deployed on AWS EC2 with PM2 for persistent uptime.
+            </p>
+            <div class="tags">
+              <span class="tag">Node.js</span>
+              <span class="tag">Express</span>
+              <span class="tag">Groq LLaMA 3.1</span>
+              <span class="tag">AWS EC2</span>
+              <span class="tag">GitHub Webhooks</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-top">
+              <span class="project-name">PlanMyTrip AI</span>
+              <div class="project-ext">
+                <a
+                  href="https://github.com/mayank74pathak/PlanmytripAI"
+                  target="_blank"
+                  >GitHub ↗</a
+                >
+                <a
+                  href="https://aitripplanner-htmuk9pwzhhvqer8anhsns.streamlit.app/"
+                  target="_blank"
+                  >Live ↗</a
+                >
+              </div>
+            </div>
+            <p class="project-desc">
+              Agentic trip planner using LangGraph multi-agent workflows.
+              Integrates weather, place search, currency conversion and expense
+              tools to deliver personalised itineraries in real time.
+            </p>
+            <div class="tags">
+              <span class="tag">LangGraph</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">OpenAI</span>
+              <span class="tag">Groq</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-top">
+              <span class="project-name">Full Stack URL Shortener</span>
+              <div class="project-ext">
+                <a href="https://github.com/mayank74pathak/url" target="_blank"
+                  >GitHub ↗</a
+                >
+                <a href="https://trimmr74.netlify.app/" target="_blank"
+                  >Live ↗</a
+                >
+              </div>
+            </div>
+            <p class="project-desc">
+              URL shortener with secure auth, click analytics, and geographic
+              tracking. Real-time dashboard shows usage statistics and link
+              performance insights.
+            </p>
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">ShadCN</span>
+              <span class="tag">Tailwind</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Netlify</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-top">
+              <span class="project-name">Chat with Any PDF (RAG)</span>
+              <div class="project-ext">
+                <a
+                  href="https://github.com/mayank74pathak/Ragchatbypdf"
+                  target="_blank"
+                  >GitHub ↗</a
+                >
+                <a
+                  href="https://adazgrc9ttepkesrbustwe.streamlit.app/"
+                  target="_blank"
+                  >Live ↗</a
+                >
+              </div>
+            </div>
+            <p class="project-desc">
+              PDF conversational AI with FAISS vector indexing for semantic
+              search over 10+ page documents. Sub-3 second responses using
+              HuggingFace embeddings and Groq LLM.
+            </p>
+            <div class="tags">
+              <span class="tag">LangChain</span>
+              <span class="tag">Gemini API</span>
+              <span class="tag">HuggingFace</span>
+              <span class="tag">FAISS</span>
+              <span class="tag">Streamlit</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="fade-in">
+        <div class="section-label">Experience</div>
+        <div class="exp-item">
+          <div class="exp-row">
+            <span class="exp-role">AI Researcher & Technical Mentor</span>
+            <span class="exp-date">July 2025 – Present</span>
+          </div>
+          <div class="exp-org">Codingpro</div>
+          <div class="exp-desc">
+            Mentoring 500+ students in C, Web Technology, DevOps, OOP in C++,
+            and Computer Networks. Conducting technical interview training
+            sessions and coordinating with recruiters to streamline student
+            hiring.
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education" class="fade-in">
+        <div class="section-label">Education</div>
+        <div class="edu-grid">
+          <div class="edu-card">
+            <div class="edu-degree">M.Tech CSE (Artificial Intelligence)</div>
+            <div class="edu-inst">Delhi Technological University, Delhi</div>
+            <div class="edu-meta">
+              2023 – 2025 &nbsp;·&nbsp; CGPA 8.16 &nbsp;·&nbsp; Top 5 in cohort
+              (Sem 3, CGPA 8.7)
+            </div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-degree">BE Information Technology</div>
+            <div class="edu-inst">Mumbai University, Mumbai</div>
+            <div class="edu-meta">2016 – 2020 &nbsp;·&nbsp; 70.2%</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="fade-in">
+        <div class="section-label">Highlights</div>
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-label">LeetCode + GFG Problems</div>
+            <div class="stat-val">450+</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Students Mentored</div>
+            <div class="stat-val">500+</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">GATE 2023 AIR</div>
+            <div class="stat-val">5767</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">M.Tech CGPA (Sem 3)</div>
+            <div class="stat-val">8.7</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PUBLICATIONS -->
+      <section class="fade-in">
+        <div class="section-label">Publications</div>
+        <div class="pub-list">
+          <div class="pub">
+            <strong
+              >Smart Home Automation using Computer Vision and Segmented Image
+              Processing based on IoT</strong
+            ><br />
+            Published in IEEE &nbsp;·&nbsp;
+            <a
+              href="https://drive.google.com/file/d/1Qbi61N5_6gKuBKkgSdV4YGJIYh1Qg9oY/view"
+              target="_blank"
+              >View paper ↗</a
+            >
+          </div>
+          <div class="pub">
+            <strong
+              >Implementation on Credit Card Fraud Detection Using GAN
+              Oversampling</strong
+            ><br />
+            <a
+              href="https://drive.google.com/file/d/1sNifWIZSGxg0Jnk8LrM9mQwWp2UComrF/view?usp=sharing"
+              target="_blank"
+              >View paper ↗</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- CERTIFICATIONS -->
+      <section class="fade-in">
+        <div class="section-label">Certifications</div>
+        <div class="cert-list">
+          <div class="cert-item">
+            <div class="cert-dot"></div>
+            <span
+              >Generative AI with LLM — Coursera &nbsp;<a
+                href="https://www.coursera.org/account/accomplishments/certificate/5UD9ZTADONPL"
+                target="_blank"
+                >↗</a
+              ></span
+            >
+          </div>
+          <div class="cert-item">
+            <div class="cert-dot"></div>
+            <span>AICTE PG Scholarship — GATE 2023 Qualified</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="fade-in">
+        <div class="section-label">Contact</div>
+        <p style="font-size: 14px; color: var(--muted); margin-bottom: 1rem">
+          I'm open to full-time roles, freelance projects, and collaborations in
+          AI/ML and full-stack development.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px">
+          <a class="btn btn-primary" href="mailto:mayank74pathak@gmail.com"
+            >mayank74pathak@gmail.com</a
+          >
+          <a
+            class="btn"
+            href="https://github.com/mayank74pathak"
+            target="_blank"
+            >GitHub</a
+          >
+          <a
+            class="btn"
+            href="https://linkedin.com/in/mayank74pathak"
+            target="_blank"
+            >LinkedIn</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Mayank Pathak &nbsp;·&nbsp; Ahmedabad, Gujarat</span>
+      <a href="mailto:mayank74pathak@gmail.com">mayank74pathak@gmail.com</a>
+    </footer>
+
+    <script>
+      // Scroll fade-in animation
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
+
+      // Smooth scroll for nav links
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          const target = document.querySelector(link.getAttribute("href"));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
